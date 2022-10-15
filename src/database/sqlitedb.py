@@ -69,7 +69,7 @@ class SqliteDatabase(DatabaseManager):
                 values.append(value)
             where_clause = " AND ".join(placeholders)
             query += f" WHERE {where_clause}"
-        self._execute(query, values)
+        self._execute(query, values).fetchall()
 
     def delete(self, table_name: str, clause: Dict):
         placeholders = [f"{column} = ?" for column in clause.keys()]
